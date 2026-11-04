@@ -5,6 +5,10 @@ versions follow [Semantic Versioning](https://semver.org/). CI builds of `main` 
 
 ## [Unreleased]
 
+## [0.2.0] – 2026-11-04
+
+First public release.
+
 ### Fixed
 - Tapping the widget's top-right corner (and the 1–10 min timer) did not refresh: first the job was postponed by battery optimizations, then (0.1.32) running in the widget receiver had no network (`TypeError: Failed to fetch`). It now runs as an expedited job, started immediately with network access.
 - Network errors of the page load are now reported precisely (e.g. `network: net::ERR_… (code)`) instead of a generic `Failed to fetch`.

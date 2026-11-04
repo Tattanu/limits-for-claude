@@ -106,7 +106,7 @@ Sicurezza: [SECURITY.md](SECURITY.md) · Modifiche: [CHANGELOG.md](CHANGELOG.md)
 
 | Data | Stato |
 |---|---|
-| 2026-11-04 | 0.1.6 provata sul telefono (piano Pro): login, limiti, contatori per prodotto, anelli adattivi funzionano. Trovato e corretto: il tocco sull'angolo del widget non aggiornava (lavoro rimandato da WorkManager). Nessuna release stabile pubblicata |
+| 2026-11-04 | **v0.2.0, prima release pubblica.** Provata sul telefono (piano Pro, Galaxy S23 Ultra): login, limiti, contatori per prodotto, anelli adattivi, aggiornamento dal tocco sull'angolo (job urgente) |
 
 ## Licenza
 
