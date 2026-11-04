@@ -5,6 +5,9 @@ versions follow [Semantic Versioning](https://semver.org/). CI builds of `main` 
 
 ## [Unreleased]
 
+### Added
+- Live widget demo on GitHub Pages (https://tattanu.github.io/limits-for-claude/) and screenshots in the README.
+
 ## [0.2.0] – 2026-11-04
 
 First public release.

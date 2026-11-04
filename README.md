@@ -13,6 +13,21 @@ Works with any Claude account and plan (Free, Pro, Max, Team): it shows whatever
 
 🇮🇹 [Leggi in italiano](README.it.md)
 
+<p align="center">
+  <img src="docs/images/rings_wide.jpg" alt="Widget with rings: 5-hour session, weekly, Code, Chat and Cowork" width="560">
+</p>
+
+### ▶ [Try the widget live in your browser](https://tattanu.github.io/limits-for-claude/)
+
+Before installing, open the **[live demo](https://tattanu.github.io/limits-for-claude/)**: it runs the app's drawing code
+with sample data, so you can switch styles, colors and transparency, show or hide items, and drag to resize the widget.
+
+| Same widget, three sizes — items grow or shrink to fit |  |
+|---|---|
+| <img src="docs/images/rings_compact.jpg" alt="Compact widget, five small rings in a row" width="420"> | <img src="docs/images/rings_tall.jpg" alt="Tall widget, rings in two rows" width="300"> |
+
+Screenshots: Samsung Galaxy S23 Ultra, Pro plan, Italian language, November 2026. More styles (batteries, columns, bars) can be previewed in the live demo.
+
 > **Unofficial.** Not affiliated with, endorsed by or supported by Anthropic. It reads the same
 > data you see at [claude.ai/settings/usage](https://claude.ai/settings/usage) through an
 > **undocumented** interface that can change at any time. See [Limitations](#limitations).
@@ -21,6 +36,7 @@ Works with any Claude account and plan (Free, Pro, Max, Team): it shows whatever
 
 ## Contents
 
+- [Live demo](https://tattanu.github.io/limits-for-claude/)
 - [Features](#features)
 - [Install](#install)
 - [Use](#use)

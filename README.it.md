@@ -8,6 +8,21 @@ sessione di 5 ore, limite settimanale, limiti per modello, uso extra e ripartizi
 
 Funziona con qualsiasi account e piano (Free, Pro, Max, Team): mostra i limiti che ha il tuo piano.
 
+<p align="center">
+  <img src="docs/images/rings_wide.jpg" alt="Widget ad anelli: sessione 5 ore, settimana, Code, Chat e Cowork" width="560">
+</p>
+
+### ▶ [Prova il widget dal vivo nel browser](https://tattanu.github.io/limits-for-claude/)
+
+Prima di installare, apri la **[demo dal vivo](https://tattanu.github.io/limits-for-claude/)** (in inglese): usa lo stesso codice di disegno
+dell'app con dati di esempio. Puoi cambiare stile, colori e trasparenza, mostrare o nascondere elementi e ridimensionare il widget trascinandolo.
+
+| Stesso widget, tre misure: gli elementi si ingrandiscono o rimpiccioliscono |  |
+|---|---|
+| <img src="docs/images/rings_compact.jpg" alt="Widget compatto, cinque anelli piccoli in fila" width="420"> | <img src="docs/images/rings_tall.jpg" alt="Widget alto, anelli su due righe" width="300"> |
+
+Screenshot: Samsung Galaxy S23 Ultra, piano Pro, novembre 2026. Gli altri stili (batterie, colonne, barre) si vedono nella demo dal vivo.
+
 > **Non ufficiale.** Non è affiliata, approvata né supportata da Anthropic. Legge gli stessi dati di
 > [claude.ai/settings/usage](https://claude.ai/settings/usage) tramite un'interfaccia **non documentata**,
 > che può cambiare in qualsiasi momento. Vedi [Limiti](#limiti).
