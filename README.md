@@ -2,7 +2,8 @@
 
 *Unofficial Android home-screen widget that shows how much of your Claude usage limits is left
 (5-hour session, weekly, model-specific, extra usage), drawn as rings like a battery widget.
-Works with any account and plan (Free/Pro/Max/Team). Not affiliated with Anthropic.*
+Works with any account and plan (Free/Pro/Max/Team). Sign in once with the real claude.ai page; the app only reads
+the usage data of claude.ai/settings/usage. Not affiliated with Anthropic.*
 
 **Scopo:** widget per la schermata Home, in stile widget batteria Samsung. Mostra la percentuale **rimanente**
 di ogni limite di utilizzo dell'account Claude. Pensato anche per altre persone, altri telefoni Android
@@ -12,7 +13,8 @@ di ogni limite di utilizzo dell'account Claude. Pensato anche per altre persone,
 | Parte | Dettaglio |
 |---|---|
 | Fonte dati, modalità **login** (principale) | Pagina di login vera di claude.ai dentro l'app. Poi una WebView invisibile (mini-browser interno) chiama `claude.ai/api/organizations/{org}/usage`, gli stessi dati di claude.ai/settings/usage. Serve la WebView perché Cloudflare blocca le richieste dirette (verificato: HTTP 403 "Just a moment") |
-| Fonte dati, modalità **token** (avanzata) | `api.anthropic.com/api/oauth/usage` con un token OAuth di Claude Code (verificato con l'account Pro: HTTP 200). Il token di `~/.claude/.credentials.json` scade dopo alcune ore |
+| Modalità token | **Tolta il 2026-11-04** (scelta dell'utente): i Termini Anthropic da febbraio 2026 vietano i token OAuth dei piani Free/Pro/Max fuori da Claude Code e claude.ai. Il file `TokenApi.kt` resta nella cronologia git |
+| Login | Una sola volta. Google nella WebView chiede la password (Google non condivide gli account del telefono con le WebView e vieta il suo OAuth nelle WebView dal 2021). Consigliato "Continua con l'email"; se arriva un link: copiarlo e usare il pulsante "Incolla link dall'email" |
 | Formato | Usa l'elenco generico `limits` della risposta, quindi mostra solo i limiti del piano dell'utente. Se manca, usa le chiavi `five_hour`, `seven_day`, `seven_day_opus`, ecc. Mostra fino a 4 anelli |
 | Colori anello | verde > 50% rimanente, arancio 21–50%, rosso ≤ 20% |
 | Aggiornamento | WorkManager (programmatore di Android) ogni 15/30/60 minuti, solo con rete; il tocco sull'intestazione del widget aggiorna subito, il tocco sul resto apre l'app |
@@ -24,10 +26,10 @@ di ogni limite di utilizzo dell'account Claude. Pensato anche per altre persone,
 |---|---|
 | `app/src/main/java/.../Model.kt` | Modello dati e lettura della risposta JSON (`UsageParser`), riconoscimento piano |
 | `.../WebFetcher.kt` | Richiesta tramite WebView invisibile (modalità login) |
-| `.../TokenApi.kt` | Richiesta con token (modalità avanzata) |
 | `.../WidgetRenderer.kt` | Disegno del widget e degli anelli |
 | `.../UsageWidgetProvider.kt`, `UsageWorker.kt`, `UsageRepository.kt` | Widget, aggiornamento periodico, salvataggio |
-| `.../MainActivity.kt`, `LoginActivity.kt` | Schermata app e login |
+| `.../MainActivity.kt`, `LoginActivity.kt` | Schermata app e login (con pulsante incolla-link) |
+| `.../Insets.kt` | Margini per Android 15 (app a tutto schermo) |
 | `app/src/main/res/` | Layout widget, testi EN/IT, colori chiaro/scuro, icona |
 | `.github/workflows/build.yml` | Compilazione su GitHub Actions: APK a ogni push su `main`; release pubblica a ogni tag `v*` |
 

@@ -1,15 +1,12 @@
 package com.loisebastiano.claudelimits
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.webkit.CookieManager
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RadioButton
@@ -50,7 +47,6 @@ class MainActivity : Activity() {
 
         button(R.string.btn_login) { startActivityForResult(Intent(this, LoginActivity::class.java), 1) }
         text(getString(R.string.m_google_hint), 13f)
-        button(R.string.btn_token) { askToken() }
         refresh = button(R.string.btn_refresh) { doRefresh() }
 
         text(getString(R.string.m_interval), 15f)
@@ -110,24 +106,6 @@ class MainActivity : Activity() {
         }
     }
 
-    private fun askToken() {
-        val input = EditText(this).apply {
-            hint = getString(R.string.token_hint)
-            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE or
-                InputType.TYPE_TEXT_VARIATION_PASSWORD
-            minLines = 3
-            gravity = Gravity.TOP
-        }
-        AlertDialog.Builder(this).setTitle(R.string.token_title).setView(input)
-            .setNegativeButton(R.string.cancel, null)
-            .setPositiveButton(R.string.ok) { _, _ ->
-                val t = TokenApi.extractToken(input.text.toString())
-                if (t == null) { status.text = getString(R.string.e_bad_token); return@setPositiveButton }
-                Prefs.setToken(this, t)
-                onLoggedIn()
-            }.show()
-    }
-
     private fun doLogout() {
         CookieManager.getInstance().removeAllCookies(null)
         CookieManager.getInstance().flush()
@@ -144,7 +122,6 @@ class MainActivity : Activity() {
         val lines = mutableListOf<String>()
         lines += when (mode) {
             Prefs.MODE_WEB -> getString(R.string.m_mode_web)
-            Prefs.MODE_TOKEN -> getString(R.string.m_mode_token)
             else -> getString(R.string.m_not_logged)
         }
         snap?.plan?.let { lines += getString(R.string.m_plan, it) }
