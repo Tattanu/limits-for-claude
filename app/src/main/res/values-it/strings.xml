@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Limits for Claude</string>
+    <string name="widget_description">Limiti di utilizzo di Claude rimanenti, come il widget della batteria</string>
+    <string name="w_login">Tocca per accedere</string>
+    <string name="w_loading">Aggiornamento…</string>
+    <string name="w_no_data">Nessun limite indicato per questo account</string>
+    <string name="l_session">Sessione 5h</string>
+    <string name="l_week">Settimana</string>
+    <string name="l_week_opus">Opus sett.</string>
+    <string name="l_week_sonnet">Sonnet sett.</string>
+    <string name="l_extra">Extra</string>
+    <string name="l_cowork">Cowork</string>
+    <string name="l_apps">App</string>
+    <string name="m_not_logged">Non hai effettuato l’accesso. Accedi per vedere i tuoi limiti.</string>
+    <string name="m_mode_web">Accesso con claude.ai</string>
+    <string name="m_mode_token">Accesso con token</string>
+    <string name="m_plan">Piano: %1$s</string>
+    <string name="m_last_update">Ultimo aggiornamento: %1$s</string>
+    <string name="m_error">Errore: %1$s</string>
+    <string name="m_limit_line">%1$s: %2$d%% rimanente</string>
+    <string name="m_resets">si azzera %1$s</string>
+    <string name="btn_login">Accedi con claude.ai</string>
+    <string name="btn_token">Usa un token di accesso (avanzato)</string>
+    <string name="btn_refresh">Aggiorna ora</string>
+    <string name="btn_logout">Esci</string>
+    <string name="m_interval">Aggiornamento automatico</string>
+    <string name="m_minutes">ogni %1$d min</string>
+    <string name="m_widget_hint">Aggiungi il widget: tieni premuto sulla schermata Home → Widget → Limits for Claude.</string>
+    <string name="m_google_hint">Se l’accesso con Google è bloccato nell’app, scegli “Continua con l’email” usando lo stesso indirizzo.</string>
+    <string name="m_disclaimer">App non ufficiale, non affiliata né approvata da Anthropic. Legge gli stessi dati mostrati in claude.ai/settings/usage; quell’interfaccia non è documentata e può cambiare. Le credenziali restano su questo dispositivo.</string>
+    <string name="token_title">Token di accesso</string>
+    <string name="token_hint">Incolla un token OAuth (sk-ant-oat…) oppure tutto il contenuto di ~/.claude/.credentials.json</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Annulla</string>
+    <string name="e_session">Sessione scaduta: accedi di nuovo</string>
+    <string name="e_auth">Token rifiutato (HTTP %1$d): forse è scaduto</string>
+    <string name="e_no_token">Nessun token salvato</string>
+    <string name="e_timeout">claude.ai non ha risposto in tempo</string>
+    <string name="e_bad_token">Nessun token trovato nel testo incollato</string>
+    <string name="login_title">Accedi a claude.ai</string>
+</resources>

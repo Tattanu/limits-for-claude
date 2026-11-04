@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Limits for Claude</string>
+    <string name="widget_description">Remaining Claude usage limits, like a battery widget</string>
+    <string name="w_login">Tap to sign in</string>
+    <string name="w_loading">Updating…</string>
+    <string name="w_no_data">No limits reported for this account</string>
+    <string name="l_session">5h session</string>
+    <string name="l_week">Weekly</string>
+    <string name="l_week_opus">Opus week</string>
+    <string name="l_week_sonnet">Sonnet week</string>
+    <string name="l_extra">Extra usage</string>
+    <string name="l_cowork">Cowork</string>
+    <string name="l_apps">Apps</string>
+    <string name="m_not_logged">Not signed in. Sign in to show your limits.</string>
+    <string name="m_mode_web">Signed in with claude.ai</string>
+    <string name="m_mode_token">Using an access token</string>
+    <string name="m_plan">Plan: %1$s</string>
+    <string name="m_last_update">Last update: %1$s</string>
+    <string name="m_error">Error: %1$s</string>
+    <string name="m_limit_line">%1$s: %2$d%% left</string>
+    <string name="m_resets">resets %1$s</string>
+    <string name="btn_login">Sign in with claude.ai</string>
+    <string name="btn_token">Use an access token (advanced)</string>
+    <string name="btn_refresh">Refresh now</string>
+    <string name="btn_logout">Sign out</string>
+    <string name="m_interval">Automatic refresh</string>
+    <string name="m_minutes">every %1$d min</string>
+    <string name="m_widget_hint">Add the widget: long-press the home screen → Widgets → Limits for Claude.</string>
+    <string name="m_google_hint">If Google sign-in is blocked inside the app, choose “Continue with email” and use the same address.</string>
+    <string name="m_disclaimer">Unofficial app, not affiliated with or endorsed by Anthropic. It reads the same usage data shown at claude.ai/settings/usage; that interface is undocumented and may change. Your credentials stay on this device.</string>
+    <string name="token_title">Access token</string>
+    <string name="token_hint">Paste an OAuth access token (sk-ant-oat…) or the whole content of ~/.claude/.credentials.json</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="e_session">Session expired: sign in again</string>
+    <string name="e_auth">Token rejected (HTTP %1$d): it may be expired</string>
+    <string name="e_no_token">No token saved</string>
+    <string name="e_timeout">claude.ai did not respond in time</string>
+    <string name="e_bad_token">No token found in the pasted text</string>
+    <string name="login_title">Sign in to claude.ai</string>
+</resources>
