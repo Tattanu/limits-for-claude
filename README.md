@@ -42,4 +42,4 @@ gli aggiornamenti non si installano più sopra la versione precedente.
 3. Tenere premuto sulla Home → Widget → Limits for Claude.
 
 ## Stato
-2026-11-04: codice scritto, in attesa della prima compilazione su GitHub Actions.
+2026-11-04: repository pubblico https://github.com/Tattanu/limits-for-claude ; compilazione su Actions riuscita (v0.1.2, APK 1,7 MB firmato con la chiave definitiva, copiato in /sdcard/Download). Da provare sul telefono: login claude.ai, widget. Release pubblica (tag `v0.1.0`) dopo la prova. Segreti caricati con `~/segreti.sh`.
