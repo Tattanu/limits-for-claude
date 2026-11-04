@@ -4,6 +4,10 @@ This document explains how the app works, why it is built this way, and where to
 Read it before larger contributions. The code is small (≈ 1,300 lines of Kotlin, no UI framework,
 one runtime library besides Kotlin: AndroidX WorkManager).
 
+Toolchain: Android Gradle Plugin 9.5 with its built-in Kotlin support (the `org.jetbrains.kotlin.android`
+plugin must **not** be applied in `app/`; the Kotlin version, 2.4.21, is pinned in the root `build.gradle.kts`),
+Gradle 9.8.2 via the wrapper, JDK 17, compileSdk/targetSdk 35, minSdk 26.
+
 ## 1. Data flow
 
 ```
