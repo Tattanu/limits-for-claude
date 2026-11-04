@@ -40,7 +40,7 @@ Commit messages: short imperative summary (`Add column style`, `Fix reset time f
 ## Code style
 
 - Kotlin official style (`kotlin.code.style=official`), 4-space indent, see `.editorconfig`.
-- No new runtime dependencies without discussing it first in an issue: the APK is ~1.8 MB and should stay small.
+- No new runtime dependencies without discussing it first in an issue: the APK is ~2.3 MB and should stay small.
 - UI is built in code (no XML layouts except the widget); keep it that way for consistency.
 - Comments explain *why*, not *what*.
 
