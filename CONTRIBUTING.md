@@ -53,7 +53,7 @@ Commit messages: short imperative summary (`Add column style`, `Fix reset time f
 ## Releases (maintainers)
 
 1. Move the *Unreleased* entries in `CHANGELOG.md` under the new version.
-2. `git tag v0.2.0 && git push origin v0.2.0` — CI builds, signs and publishes the GitHub Release with the APK.
+2. `./scripts/release.sh 0.2.0` — checks that `main` is clean and in sync and that the changelog has the section, then pushes the tag `v0.2.0`; CI builds, signs and publishes the GitHub Release with the APK.
 3. The signing key is kept offline by the maintainer and stored only as repository secrets (`KEYSTORE_B64`, `KEYSTORE_PASSWORD`). Losing it means users must uninstall to update.
 
 ## Code of Conduct
