@@ -50,5 +50,5 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     // Real org.json on the JVM: Android's copy is only a stub in local unit tests.
-    testImplementation("org.json:json:20240303")
+    testImplementation("org.json:json:20260814")
 }
