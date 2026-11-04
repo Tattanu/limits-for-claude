@@ -1,0 +1,49 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting! Please hide personal data (email, organization names) in screenshots.
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Shown in Android Settings → Apps → Limits for Claude, or in the APK file name
+      placeholder: 0.1.6
+    validations: { required: true }
+  - type: input
+    id: device
+    attributes:
+      label: Device and Android version
+      placeholder: Samsung Galaxy S23 Ultra, Android 16 (One UI 8)
+    validations: { required: true }
+  - type: dropdown
+    id: plan
+    attributes:
+      label: Claude plan
+      options: [Free, Pro, Max, Team, Enterprise, Not sure]
+    validations: { required: true }
+  - type: dropdown
+    id: style
+    attributes:
+      label: Widget style
+      options: [Rings, Batteries, Columns, Bars, Not relevant]
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+      description: Include the exact error text if the app or widget shows one.
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. …
+        2. …
+  - type: textarea
+    id: media
+    attributes:
+      label: Screenshots
+      description: Drag images here.

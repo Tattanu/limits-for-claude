@@ -47,4 +47,8 @@ android {
 dependencies {
     implementation("androidx.work:work-runtime-ktx:2.9.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    testImplementation("junit:junit:4.13.2")
+    // Real org.json on the JVM: Android's copy is only a stub in local unit tests.
+    testImplementation("org.json:json:20240303")
 }

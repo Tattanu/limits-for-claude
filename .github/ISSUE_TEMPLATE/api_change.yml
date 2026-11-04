@@ -1,0 +1,29 @@
+name: API changed / wrong numbers
+description: The widget shows an error or numbers that differ from claude.ai/settings/usage
+labels: [api-change]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The app reads an undocumented claude.ai endpoint, so changes on Anthropic's side can break it.
+        The most useful thing you can share is the raw response:
+        1. On a computer, sign in to claude.ai.
+        2. Open `https://claude.ai/api/organizations` and copy the `uuid` of your organization.
+        3. Open `https://claude.ai/api/organizations/<uuid>/usage`.
+        4. Paste the JSON below. It contains only usage numbers and dates — check it anyway and remove anything you do not want to share.
+  - type: dropdown
+    id: plan
+    attributes:
+      label: Claude plan
+      options: [Free, Pro, Max, Team, Enterprise, Not sure]
+    validations: { required: true }
+  - type: textarea
+    id: shown
+    attributes:
+      label: What the widget shows vs. what claude.ai/settings/usage shows
+    validations: { required: true }
+  - type: textarea
+    id: json
+    attributes:
+      label: Usage JSON
+      render: json

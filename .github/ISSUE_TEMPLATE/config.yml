@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/Tattanu/limits-for-claude/security/advisories/new
+    about: Report security problems privately, not as a public issue.
+  - name: Architecture and how-to guide
+    url: https://github.com/Tattanu/limits-for-claude/blob/main/docs/ARCHITECTURE.md
+    about: How the app works and where to change things.

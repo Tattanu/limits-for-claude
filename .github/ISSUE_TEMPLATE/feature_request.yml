@@ -1,0 +1,21 @@
+name: Feature request
+description: Suggest an idea or an improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would you like to do, and why?
+    validations: { required: true }
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proposed solution
+      description: Mock-ups or screenshots of similar widgets are welcome.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: The idea does not require OAuth/API tokens of consumer plans, sending data to third parties, or reading chats (see CONTRIBUTING → Scope)
+          required: true

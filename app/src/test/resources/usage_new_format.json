@@ -1,0 +1,20 @@
+{
+  "five_hour": {"utilization": 38.0, "resets_at": "2026-11-04T20:49:59.750291+00:00"},
+  "seven_day": {"utilization": 59.0, "resets_at": "2026-11-07T03:59:59.750312+00:00"},
+  "seven_day_opus": null,
+  "seven_day_sonnet": null,
+  "extra_usage": {"is_enabled": false, "monthly_limit": 5000, "used_credits": 0.0, "utilization": 0.0, "currency": "EUR"},
+  "limits": [
+    {"kind": "session", "group": "session", "percent": 38, "severity": "normal", "resets_at": "2026-11-04T20:49:59.750291+00:00", "scope": null, "is_active": false},
+    {"kind": "weekly_all", "group": "weekly", "percent": 59, "severity": "normal", "resets_at": "2026-11-07T03:59:59.750312+00:00", "scope": null, "is_active": true}
+  ],
+  "seven_day_breakdown": {
+    "as_of": "2026-11-04T20:23:40.790246+00:00",
+    "rows": [
+      {"key": "claude_code", "display_name": "Claude Code", "percent": 83},
+      {"key": "chat", "display_name": "Chats", "percent": 6},
+      {"key": "cowork", "display_name": "Cowork", "percent": 8},
+      {"key": "other", "display_name": "Other", "percent": 3}
+    ]
+  }
+}
