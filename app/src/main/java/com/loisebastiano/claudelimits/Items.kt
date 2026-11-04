@@ -16,7 +16,7 @@ object Items {
         val week = s.limits.firstOrNull { it.kind == "weekly_all" }
         val ofLimit = Prefs.productsOfLimit(c) && week != null
         s.products.forEach { p ->
-            val used = if (ofLimit) p.share * week!!.usedPercent / 100.0 else p.share
+            val used = if (ofLimit) p.share * week.usedPercent / 100.0 else p.share
             out += Item("product:" + p.key, productLabel(c, p), used, week?.resetsAt, true)
         }
         return out

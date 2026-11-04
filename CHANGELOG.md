@@ -8,6 +8,9 @@ versions follow [Semantic Versioning](https://semver.org/). CI builds of `main` 
 ### Fixed
 - Tapping the widget's top-right corner (and the 1–10 min timer) did not refresh: the work was handed to WorkManager, which can postpone it. It now runs immediately in the widget receiver.
 
+### Changed
+- Build: Android Gradle Plugin 9.5.0 (built-in Kotlin), Kotlin 2.4.21, Gradle 9.8.2, WorkManager 2.12.0; CI actions updated. Unit tests now run on the debug variant (`testDebugUnitTest`).
+
 ### Added
 - *Last attempt* line in the app: time, source (widget tap, timer, app, background) and outcome of the latest refresh.
 - Collaboration files: MIT license, contributing guide, architecture document, security policy, code of conduct, issue and pull-request templates, Dependabot.

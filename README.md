@@ -3,7 +3,7 @@
 [![Build](https://github.com/Tattanu/limits-for-claude/actions/workflows/build.yml/badge.svg)](https://github.com/Tattanu/limits-for-claude/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Android 8.0+](https://img.shields.io/badge/Android-8.0%2B-3DDC84)
-![Kotlin](https://img.shields.io/badge/Kotlin-2.0-7F52FF)
+![Kotlin](https://img.shields.io/badge/Kotlin-2.4-7F52FF)
 
 **An Android home-screen widget that shows how much of your Claude usage limits you have used** —
 5-hour session, weekly limit, model-specific limits, extra usage, and a per-product split
@@ -127,17 +127,17 @@ Found a security problem? Please report it privately: [SECURITY.md](SECURITY.md)
 
 ## Build from source
 
-Requirements: JDK 17 and the Android SDK with platform 35 (Android Studio Ladybug or newer includes both).
+Requirements: JDK 17 and the Android SDK with platform 35. Android Gradle Plugin 9.5 needs a recent Android Studio.
 
 ```bash
 git clone https://github.com/Tattanu/limits-for-claude.git
 cd limits-for-claude
-./gradlew :app:testReleaseUnitTest   # unit tests (parser, model)
+./gradlew :app:testDebugUnitTest   # unit tests (parser, model)
 ./gradlew :app:assembleDebug         # APK in app/build/outputs/apk/debug/
 ```
 
 Or open the folder in Android Studio and run the `app` configuration.
-The Gradle wrapper (8.10.2) downloads the right Gradle version; no global install is needed.
+The Gradle wrapper (9.8.2) downloads the right Gradle version; no global install is needed.
 
 Release builds are signed only in CI, with the repository secrets `KEYSTORE_B64` and `KEYSTORE_PASSWORD`.
 Without them (e.g. forks, local builds) the debug key is used.

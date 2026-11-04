@@ -1,6 +1,6 @@
 plugins {
+    // Kotlin is built into AGP 9; the Kotlin Gradle Plugin version is pinned in the root build file.
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
 }
 
 val ksFile: String? = System.getenv("KEYSTORE_FILE")
@@ -41,7 +41,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions { jvmTarget = "17" }
+}
+
+kotlin {
+    compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) }
 }
 
 dependencies {

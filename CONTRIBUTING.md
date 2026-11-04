@@ -18,7 +18,7 @@ from a one-line report to a new drawing style.
 
 1. Install JDK 17 and the Android SDK (platform 35) — Android Studio includes both.
 2. `git clone https://github.com/Tattanu/limits-for-claude.git`
-3. `./gradlew :app:testReleaseUnitTest :app:assembleDebug`
+3. `./gradlew :app:testDebugUnitTest :app:assembleDebug`
 4. Install `app/build/outputs/apk/debug/app-debug.apk` on a device or emulator (Android 8.0+), sign in, add the widget.
 
 A debug build has a different signature than official releases: uninstall the release before installing it, and vice versa.
