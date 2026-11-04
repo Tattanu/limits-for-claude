@@ -26,7 +26,7 @@
            display: flex; align-items: flex-start; justify-content: center; overflow: hidden; }
   .stage.wall-dark { background: radial-gradient(circle at 70% 30%, #26304a 0%, #0b0d14 70%); }
   .stage.wall-light { background: linear-gradient(135deg, #dfe9f3 0%, #f7efe5 100%); }
-  #frame { position: relative; width: 360px; height: 200px; max-width: 100%; }
+  #frame { position: relative; width: 360px; height: 210px; max-width: 100%; }
   #frame canvas { display: block; width: 100%; height: 100%; }
   #grip { position: absolute; right: -6px; bottom: -6px; width: 22px; height: 22px; border-radius: 50%;
           background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.4); cursor: nwse-resize; touch-action: none; }
@@ -303,7 +303,7 @@ function draw(canvas, wDp, hDp) {
 // ---------------- UI ----------------
 const $ = id => document.getElementById(id);
 const frame = $("frame"), cvs = $("cv");
-let W = 360, Hh = 200;
+let W = 360, Hh = 210;
 function render() { frame.style.width = W + "px"; frame.style.height = Hh + "px"; draw(cvs, frame.clientWidth, frame.clientHeight); }
 
 function seg(el, options, get, set) {
