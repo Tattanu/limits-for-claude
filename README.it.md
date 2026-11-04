@@ -92,7 +92,7 @@ Servono JDK 17 e Android SDK con la piattaforma 35 (Android Studio li include).
 ```bash
 git clone https://github.com/Tattanu/limits-for-claude.git
 cd limits-for-claude
-./gradlew :app:testReleaseUnitTest   # test automatici
+./gradlew :app:testDebugUnitTest   # test automatici
 ./gradlew :app:assembleDebug         # APK in app/build/outputs/apk/debug/
 ```
 

@@ -132,7 +132,7 @@ Requirements: JDK 17 and the Android SDK with platform 35 (Android Studio Ladybu
 ```bash
 git clone https://github.com/Tattanu/limits-for-claude.git
 cd limits-for-claude
-./gradlew :app:testReleaseUnitTest   # unit tests (parser, model)
+./gradlew :app:testDebugUnitTest   # unit tests (parser, model)
 ./gradlew :app:assembleDebug         # APK in app/build/outputs/apk/debug/
 ```
 

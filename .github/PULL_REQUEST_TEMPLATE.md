@@ -8,7 +8,7 @@
 
 ## Checklist
 
-- [ ] Unit tests pass (`./gradlew :app:testReleaseUnitTest`)
+- [ ] Unit tests pass (`./gradlew :app:testDebugUnitTest`)
 - [ ] Visible text updated in both `values/strings.xml` and `values-it/strings.xml`
 - [ ] README / docs/ARCHITECTURE.md / CHANGELOG.md (*Unreleased*) updated if behaviour changed
 - [ ] Screenshots attached for visual changes
