@@ -90,7 +90,11 @@ the text becomes white with a shadow, because the wallpaper shows through.
 |---|---|---|
 | 1–10 min | `AlarmManager.setWindow(ELAPSED_REALTIME, …)` — **not** a wake-up alarm, no exact-alarm permission | Fires only while the device is awake; while asleep it is delivered at next wake. No battery cost with the screen off |
 | ≥ 15 min, and always as a fallback | WorkManager periodic work (network required) | Survives reboots and process death |
-| On demand | Tap on the top-right corner, *Refresh now* in the app, after sign-in, when a widget is added and data is older than the interval | One-time WorkManager job (`KEEP`, so taps do not pile up) |
+| On demand: widget tap, alarm tick | Runs **directly in the broadcast receiver** (`goAsync()` + coroutine) | Not delegated to WorkManager: one-time work can be postponed by battery optimizations, which made the tap look ineffective (fixed after 0.1.6) |
+| On demand: app button, after sign-in | Runs in the activity scope | |
+| Widget added / launcher update with stale data | One-time WorkManager job (`KEEP`) | |
+
+`UsageRepository.refresh` holds a mutex: overlapping refreshes are skipped. Each attempt stores time, source (`APP`, `WIDGET`, `TIMER`, `BACKGROUND`) and outcome, shown in the app as *Last attempt*.
 
 Each refresh creates and destroys one off-screen WebView (≈ 1–3 s).
 

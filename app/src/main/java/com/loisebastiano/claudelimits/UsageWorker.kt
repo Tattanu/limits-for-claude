@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 
 class UsageWorker(c: Context, p: WorkerParameters) : CoroutineWorker(c, p) {
     override suspend fun doWork(): Result {
-        UsageRepository.refresh(applicationContext)
+        UsageRepository.refresh(applicationContext, UsageRepository.Source.BACKGROUND)
         return Result.success()
     }
 

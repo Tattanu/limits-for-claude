@@ -81,8 +81,8 @@ Dettagli, scelte progettuali e alternative scartate: [docs/ARCHITECTURE.md](docs
 - **Termini di Anthropic:** da febbraio 2026 vietano l'uso dei token OAuth dei piani Free/Pro/Max in prodotti diversi da Claude Code e claude.ai
   ([articolo](https://www.theregister.com/2026/02/20/anthropic_clarifies_ban_third_party_claude_access)).
   Per questo l'app **non** usa token né OAuth: legge solo la pagina di utilizzo della tua sessione claude.ai.
-- **Verificato finora:** accesso con email e limiti di sessione e settimanali di un piano **Pro** (novembre 2026).
-  **Non ancora verificato:** risposte dei piani Max, Team ed Enterprise; presenza della ripartizione per prodotto nella risposta di claude.ai;
+- **Verificato finora** (piano Pro, Samsung Galaxy S23 Ultra, novembre 2026): accesso con email, limiti di sessione e settimanali, ripartizione per prodotto (Code, Chat, Cowork, Altro), impaginazione che si adatta al ridimensionamento.
+  **Non ancora verificato:** risposte dei piani Max, Team ed Enterprise;
   formato esatto dei link di accesso email (l'apertura diretta presuppone `https://claude.ai/magic-link…`; il metodo degli appunti funziona con qualsiasi link claude.ai).
 
 ## Compilare dal codice
@@ -106,7 +106,7 @@ Sicurezza: [SECURITY.md](SECURITY.md) · Modifiche: [CHANGELOG.md](CHANGELOG.md)
 
 | Data | Stato |
 |---|---|
-| 2026-11-04 | Versione 0.1.6: login claude.ai e lettura dei limiti verificati sul telefono (piano Pro). Nuovi stili, contatori per prodotto e login automatico compilati ma ancora da provare sul dispositivo. Nessuna release stabile pubblicata |
+| 2026-11-04 | 0.1.6 provata sul telefono (piano Pro): login, limiti, contatori per prodotto, anelli adattivi funzionano. Trovato e corretto: il tocco sull'angolo del widget non aggiornava (lavoro rimandato da WorkManager). Nessuna release stabile pubblicata |
 
 ## Licenza
 

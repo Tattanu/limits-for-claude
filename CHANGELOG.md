@@ -5,7 +5,11 @@ versions follow [Semantic Versioning](https://semver.org/). CI builds of `main` 
 
 ## [Unreleased]
 
+### Fixed
+- Tapping the widget's top-right corner (and the 1–10 min timer) did not refresh: the work was handed to WorkManager, which can postpone it. It now runs immediately in the widget receiver.
+
 ### Added
+- *Last attempt* line in the app: time, source (widget tap, timer, app, background) and outcome of the latest refresh.
 - Collaboration files: MIT license, contributing guide, architecture document, security policy, code of conduct, issue and pull-request templates, Dependabot.
 - Gradle wrapper 8.10.2 (checksum-verified) and unit tests for the usage parser; CI runs them on every push and pull request.
 

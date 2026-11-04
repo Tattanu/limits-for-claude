@@ -232,7 +232,7 @@ class MainActivity : Activity() {
         status.text = getString(R.string.w_loading)
         WidgetRenderer.updateAll(this, loading = true)
         scope.launch {
-            UsageRepository.refresh(this@MainActivity)
+            UsageRepository.refresh(this@MainActivity, UsageRepository.Source.APP)
             refreshBtn.isEnabled = true
             render()
         }
@@ -255,6 +255,14 @@ class MainActivity : Activity() {
         lines += if (mode != null) getString(R.string.m_mode_web) else getString(R.string.m_not_logged)
         snap?.plan?.let { lines += getString(R.string.m_plan, it) }
         snap?.let { lines += getString(R.string.m_last_update, Items.clock(this, it.fetchedAt)) }
+        Prefs.attempt(this)?.let { (at, src, ok) ->
+            val from = when (src) {
+                "WIDGET" -> getString(R.string.src_widget); "TIMER" -> getString(R.string.src_timer)
+                "APP" -> getString(R.string.src_app); else -> getString(R.string.src_background)
+            }
+            lines += getString(R.string.m_attempt, Items.clock(this, at), from,
+                getString(if (ok) R.string.m_attempt_ok else R.string.m_attempt_failed))
+        }
         err?.let { lines += getString(R.string.m_error, it) }
         status.text = lines.joinToString("\n")
         loginBtn.visibility = if (mode == null) View.VISIBLE else View.GONE

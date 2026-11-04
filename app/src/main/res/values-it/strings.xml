@@ -53,4 +53,11 @@
     <string name="w_now">ora</string>
     <string name="l_other">Altro</string>
     <string name="btn_open_links">Apri i link di accesso delle email direttamente qui (impostazione da fare una volta)</string>
+    <string name="m_attempt">Ultimo tentativo: %1$s · %2$s · %3$s</string>
+    <string name="m_attempt_ok">riuscito</string>
+    <string name="m_attempt_failed">fallito</string>
+    <string name="src_widget">tocco sul widget</string>
+    <string name="src_timer">timer</string>
+    <string name="src_app">app</string>
+    <string name="src_background">in background</string>
 </resources>

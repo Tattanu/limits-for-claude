@@ -16,6 +16,13 @@ object Prefs {
     fun setWeb(c: Context) = p(c).edit().putString("mode", MODE_WEB).remove("org").remove("snapshot").remove("error").apply()
     fun setOrg(c: Context, o: String) = p(c).edit().putString("org", o).apply()
     fun setError(c: Context, e: String?) = p(c).edit().putString("error", e).apply()
+    /** Last refresh attempt: time, source and outcome. */
+    fun attempt(c: Context): Triple<Long, String, Boolean>? =
+        p(c).getLong("attemptAt", 0L).takeIf { it > 0 }?.let {
+            Triple(it, p(c).getString("attemptSource", "") ?: "", p(c).getBoolean("attemptOk", false))
+        }
+    fun setAttempt(c: Context, source: String, ok: Boolean) = p(c).edit().putLong("attemptAt", System.currentTimeMillis())
+        .putString("attemptSource", source).putBoolean("attemptOk", ok).apply()
     fun setSnapshot(c: Context, s: Snapshot) = p(c).edit().putString("snapshot", s.toJson()).remove("error").apply()
 
     fun logout(c: Context) {
