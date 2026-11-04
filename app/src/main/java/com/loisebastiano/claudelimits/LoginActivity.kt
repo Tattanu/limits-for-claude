@@ -16,7 +16,9 @@ class LoginActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         web = WebView(this)
-        setContentView(web)
+        val root = android.widget.FrameLayout(this).apply { addView(web) }
+        root.padForSystemBars()
+        setContentView(root)
         val cm = CookieManager.getInstance()
         cm.setAcceptCookie(true)
         cm.setAcceptThirdPartyCookies(web, true)

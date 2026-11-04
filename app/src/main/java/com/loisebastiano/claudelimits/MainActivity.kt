@@ -43,6 +43,7 @@ class MainActivity : Activity() {
             setText(res); setOnClickListener { onClick() }
         }.also { col.addView(it) }
 
+        text(getString(R.string.app_name), 24f).setTypeface(null, android.graphics.Typeface.BOLD)
         status = text("")
         limitsBox = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
         col.addView(limitsBox)
@@ -71,7 +72,9 @@ class MainActivity : Activity() {
         text(getString(R.string.m_widget_hint), 13f)
         text(getString(R.string.m_disclaimer), 12f).alpha = 0.7f
 
-        setContentView(ScrollView(this).apply { addView(col) })
+        val root = ScrollView(this).apply { addView(col) }
+        root.padForSystemBars()
+        setContentView(root)
     }
 
     override fun onResume() {
