@@ -8,20 +8,24 @@ sessione di 5 ore, limite settimanale, limiti per modello, uso extra e ripartizi
 
 Funziona con qualsiasi account e piano (Free, Pro, Max, Team): mostra i limiti che ha il tuo piano.
 
-<p align="center">
-  <img src="docs/images/rings_wide.jpg" alt="Widget ad anelli: sessione 5 ore, settimana, Code, Chat e Cowork" width="560">
-</p>
-
 ### ▶ [Prova il widget dal vivo nel browser](https://tattanu.github.io/limits-for-claude/)
 
 Prima di installare, apri la **[demo dal vivo](https://tattanu.github.io/limits-for-claude/)** (in inglese): usa lo stesso codice di disegno
 dell'app con dati di esempio. Puoi cambiare stile, colori e trasparenza, mostrare o nascondere elementi e ridimensionare il widget trascinandolo.
 
-| Stesso widget, tre misure: gli elementi si ingrandiscono o rimpiccioliscono |  |
-|---|---|
-| <img src="docs/images/rings_compact.jpg" alt="Widget compatto, cinque anelli piccoli in fila" width="420"> | <img src="docs/images/rings_tall.jpg" alt="Widget alto, anelli su due righe" width="300"> |
+| Anelli | Batterie |
+|:---:|:---:|
+| <img src="docs/images/rings_wide.jpg" alt="Stile anelli" width="400"> | <img src="docs/images/batteries.jpg" alt="Stile batterie: si svuotano man mano che consumi" width="400"> |
+| **Colonne** | **Barre** |
+| <img src="docs/images/columns.jpg" alt="Stile colonne" width="400"> | <img src="docs/images/bars.jpg" alt="Stile barre" width="400"> |
 
-Screenshot: Samsung Galaxy S23 Ultra, piano Pro, novembre 2026. Gli altri stili (batterie, colonne, barre) si vedono nella demo dal vivo.
+Lo stesso widget si adatta alla sua misura: gli elementi si ingrandiscono se c'è spazio e si rimpiccioliscono se non c'è:
+
+| Compatto | Alto |
+|:---:|:---:|
+| <img src="docs/images/rings_compact.jpg" alt="Widget compatto, cinque anelli piccoli in fila" width="400"> | <img src="docs/images/rings_tall.jpg" alt="Widget alto, anelli su due righe" width="280"> |
+
+Screenshot: Samsung Galaxy S23 Ultra, piano Pro, novembre 2026. La demo dal vivo usa lo stesso codice di disegno, confrontato fianco a fianco con questi screenshot.
 
 > **Non ufficiale.** Non è affiliata, approvata né supportata da Anthropic. Legge gli stessi dati di
 > [claude.ai/settings/usage](https://claude.ai/settings/usage) tramite un'interfaccia **non documentata**,
