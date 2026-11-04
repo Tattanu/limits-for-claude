@@ -17,12 +17,9 @@
     <string name="m_plan">Piano: %1$s</string>
     <string name="m_last_update">Ultimo aggiornamento: %1$s</string>
     <string name="m_error">Errore: %1$s</string>
-    <string name="m_limit_line">%1$s: %2$d%% rimanente</string>
-    <string name="m_resets">si azzera %1$s</string>
     <string name="btn_login">Accedi con claude.ai</string>
     <string name="btn_refresh">Aggiorna ora</string>
     <string name="btn_logout">Esci</string>
-    <string name="m_interval">Aggiornamento automatico</string>
     <string name="m_minutes">ogni %1$d min</string>
     <string name="m_widget_hint">Aggiungi il widget: tieni premuto sulla schermata Home → Widget → Limits for Claude.</string>
     <string name="m_google_hint">L’accesso serve una sola volta. Modo più semplice: “Continua con l’email” → ricevi un codice o un link per email (se è un link: tienilo premuto, copialo, poi “Incolla link dall’email”). Con Google nell’app viene chiesta la password perché Google non condivide gli account del telefono con le pagine dentro le app.</string>
@@ -32,7 +29,28 @@
     <string name="e_session">Sessione scaduta: accedi di nuovo</string>
     <string name="e_timeout">claude.ai non ha risposto in tempo</string>
     <string name="login_title">Accedi a claude.ai</string>
-    <string name="login_hint">Accedi una volta. Con l’email: se ricevi un link, tienilo premuto, copialo e tocca il pulsante qui sotto.</string>
-    <string name="btn_paste_link">Incolla link dall’email</string>
-    <string name="e_no_link">Nessun link claude.ai negli appunti: prima copia il link dall’email</string>
+    <string name="login_hint">Accedi una volta. Consiglio: “Continua con l’email” → nell’email tocca il link (se hai attivato l’impostazione qui sopra) oppure copialo e torna qui: viene preso da solo. Con Google puoi inserire la password con l’impronta tramite il riempimento automatico.</string>
+    <string name="sec_account">Account</string>
+    <string name="sec_items">Elementi nel widget</string>
+    <string name="sec_style">Stile</string>
+    <string name="sec_colors">Colori</string>
+    <string name="sec_refresh">Aggiornamento automatico</string>
+    <string name="items_hint">Limiti del tuo piano e (•) come si divide il tuo uso settimanale tra Claude Code, chat, Cowork e il resto.</string>
+    <string name="items_empty">Accedi per vedere i tuoi limiti.</string>
+    <string name="opt_products_of_limit">• contatori come parte del limite settimanale (spento: quota del tuo uso settimanale)</string>
+    <string name="style_ring">Anelli</string>
+    <string name="style_battery">Batterie</string>
+    <string name="style_vbar">Colonne</string>
+    <string name="style_hbar">Barre</string>
+    <string name="opt_header">Titolo e ora di aggiornamento</string>
+    <string name="opt_reset">Tempo all’azzeramento</string>
+    <string name="opt_traffic">Colori semaforo (verde → arancio → rosso man mano che consumi)</string>
+    <string name="c_accent">Colore unico</string>
+    <string name="c_background">Sfondo (A = segue modalità chiara/scura)</string>
+    <string name="c_opacity">Opacità sfondo: %1$d%%</string>
+    <string name="c_text">Testo (A = automatico)</string>
+    <string name="refresh_hint">Ogni 1–10 min: solo mentre il telefono è attivo, quindi niente consumo a schermo spento. Tocca l’angolo in alto a destra del widget per aggiornare subito.</string>
+    <string name="w_now">ora</string>
+    <string name="l_other">Altro</string>
+    <string name="btn_open_links">Apri i link di accesso delle email direttamente qui (impostazione da fare una volta)</string>
 </resources>

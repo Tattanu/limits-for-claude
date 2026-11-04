@@ -22,8 +22,17 @@
 
         <activity
             android:name=".LoginActivity"
-            android:exported="false"
-            android:label="@string/login_title" />
+            android:exported="true"
+            android:label="@string/login_title"
+            android:launchMode="singleTop">
+            <!-- Email sign-in links from claude.ai can open directly here (user enables it once in Android settings) -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="claude.ai" android:pathPrefix="/magic-link" />
+            </intent-filter>
+        </activity>
 
         <receiver
             android:name=".UsageWidgetProvider"

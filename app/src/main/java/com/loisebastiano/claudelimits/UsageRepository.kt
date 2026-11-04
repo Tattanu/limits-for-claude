@@ -8,7 +8,7 @@ object UsageRepository {
         Prefs.mode(c) ?: return c.getString(R.string.m_not_logged)
         val err = try {
             val r = WebFetcher.fetch(c)
-            Prefs.setSnapshot(c, Snapshot(UsageParser.parse(r.usage), System.currentTimeMillis(), r.plan))
+            Prefs.setSnapshot(c, UsageParser.parse(r.usage, r.plan))
             null
         } catch (e: Exception) {
             val msg = e.message ?: e.javaClass.simpleName
