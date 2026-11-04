@@ -1,6 +1,6 @@
 plugins {
+    // Kotlin is built into AGP 9; the Kotlin Gradle Plugin version is pinned in the root build file.
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
 }
 
 val ksFile: String? = System.getenv("KEYSTORE_FILE")
