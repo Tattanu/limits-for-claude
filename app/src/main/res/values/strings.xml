@@ -37,7 +37,7 @@
     <string name="sec_refresh">Automatic refresh</string>
     <string name="items_hint">Limits of your plan, and (•) how your weekly usage splits between Claude Code, chat, Cowork and the rest.</string>
     <string name="items_empty">Sign in to see your limits.</string>
-    <string name="opt_products_of_limit">• counters as part of the weekly limit (off: share of your weekly usage)</string>
+    <string name="opt_products_of_limit">• counters in % of the weekly limit (their sum = Weekly). Off: in % of what you used this week (their sum = 100%)</string>
     <string name="style_ring">Rings</string>
     <string name="style_battery">Batteries</string>
     <string name="style_vbar">Columns</string>
@@ -60,4 +60,5 @@
     <string name="src_timer">timer</string>
     <string name="src_app">app</string>
     <string name="src_background">background</string>
+    <string name="notif_channel">Refreshing usage</string>
 </resources>

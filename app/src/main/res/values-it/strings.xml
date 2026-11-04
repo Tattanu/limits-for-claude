@@ -37,7 +37,7 @@
     <string name="sec_refresh">Aggiornamento automatico</string>
     <string name="items_hint">Limiti del tuo piano e (•) come si divide il tuo uso settimanale tra Claude Code, chat, Cowork e il resto.</string>
     <string name="items_empty">Accedi per vedere i tuoi limiti.</string>
-    <string name="opt_products_of_limit">• contatori come parte del limite settimanale (spento: quota del tuo uso settimanale)</string>
+    <string name="opt_products_of_limit">• contatori in % del limite settimanale (la loro somma = Settimana). Spento: in % di quanto hai usato questa settimana (la somma = 100%)</string>
     <string name="style_ring">Anelli</string>
     <string name="style_battery">Batterie</string>
     <string name="style_vbar">Colonne</string>
@@ -60,4 +60,5 @@
     <string name="src_timer">timer</string>
     <string name="src_app">app</string>
     <string name="src_background">in background</string>
+    <string name="notif_channel">Aggiornamento utilizzo</string>
 </resources>

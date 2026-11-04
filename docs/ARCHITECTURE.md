@@ -94,7 +94,7 @@ the text becomes white with a shadow, because the wallpaper shows through.
 |---|---|---|
 | 1–10 min | `AlarmManager.setWindow(ELAPSED_REALTIME, …)` — **not** a wake-up alarm, no exact-alarm permission | Fires only while the device is awake; while asleep it is delivered at next wake. No battery cost with the screen off |
 | ≥ 15 min, and always as a fallback | WorkManager periodic work (network required) | Survives reboots and process death |
-| On demand: widget tap, alarm tick | Runs **directly in the broadcast receiver** (`goAsync()` + coroutine) | Not delegated to WorkManager: one-time work can be postponed by battery optimizations, which made the tap look ineffective (fixed after 0.1.6) |
+| On demand: widget tap, alarm tick | **Expedited** one-time WorkManager job (`REPLACE`), falling back to a normal job when the expedited quota is used up | Two failed attempts taught this: a normal one-time job can be postponed by battery optimizations (0.1.6: tap seemed to do nothing), and fetching directly in the broadcast receiver has no network on recent Android/One UI (0.1.32: `TypeError: Failed to fetch`). Expedited jobs start immediately and are granted network access. On Android 8–11 they run as a short foreground service (`getForegroundInfo`) |
 | On demand: app button, after sign-in | Runs in the activity scope | |
 | Widget added / launcher update with stale data | One-time WorkManager job (`KEEP`) | |
 

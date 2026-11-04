@@ -1,6 +1,9 @@
 package com.loisebastiano.claudelimits
 
 import android.app.AlarmManager
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -9,6 +12,9 @@ import androidx.work.Constraints
 import androidx.work.CoroutineWorker
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.ExistingWorkPolicy
+import androidx.work.ForegroundInfo
+import androidx.work.OutOfQuotaPolicy
+import androidx.work.workDataOf
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
@@ -18,16 +24,42 @@ import java.util.concurrent.TimeUnit
 
 class UsageWorker(c: Context, p: WorkerParameters) : CoroutineWorker(c, p) {
     override suspend fun doWork(): Result {
-        UsageRepository.refresh(applicationContext, UsageRepository.Source.BACKGROUND)
+        val source = runCatching { UsageRepository.Source.valueOf(inputData.getString(KEY_SOURCE) ?: "") }
+            .getOrDefault(UsageRepository.Source.BACKGROUND)
+        UsageRepository.refresh(applicationContext, source)
         return Result.success()
     }
 
+    /** Only used on Android 8–11, where expedited work runs as a short foreground service. */
+    override suspend fun getForegroundInfo(): ForegroundInfo {
+        val nm = applicationContext.getSystemService(NotificationManager::class.java)
+        nm.createNotificationChannel(NotificationChannel(CHANNEL, applicationContext.getString(R.string.notif_channel),
+            NotificationManager.IMPORTANCE_MIN))
+        val n = Notification.Builder(applicationContext, CHANNEL)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setContentTitle(applicationContext.getString(R.string.w_loading))
+            .build()
+        return ForegroundInfo(NOTIF_ID, n)
+    }
+
     companion object {
+        private const val KEY_SOURCE = "source"
+        private const val CHANNEL = "refresh"
+        private const val NOTIF_ID = 1
         private val net = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
 
-        fun refreshNow(c: Context) {
-            val req = OneTimeWorkRequestBuilder<UsageWorker>().setConstraints(net).build()
-            WorkManager.getInstance(c).enqueueUniqueWork("now", ExistingWorkPolicy.KEEP, req)
+        /**
+         * Refresh as soon as possible. Runs as an *expedited* job: Android starts it immediately and
+         * grants it network access, which a background broadcast receiver may not have
+         * (observed: "TypeError: Failed to fetch" when fetching from the widget receiver).
+         */
+        fun refreshNow(c: Context, source: UsageRepository.Source = UsageRepository.Source.BACKGROUND) {
+            val req = OneTimeWorkRequestBuilder<UsageWorker>()
+                .setConstraints(net)
+                .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+                .setInputData(workDataOf(KEY_SOURCE to source.name))
+                .build()
+            WorkManager.getInstance(c).enqueueUniqueWork("refresh", ExistingWorkPolicy.REPLACE, req)
         }
     }
 }

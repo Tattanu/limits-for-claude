@@ -5,10 +5,6 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
 
 class UsageWidgetProvider : AppWidgetProvider() {
     companion object {
@@ -20,26 +16,13 @@ class UsageWidgetProvider : AppWidgetProvider() {
         when (intent.action) {
             ACTION_REFRESH -> if (Prefs.mode(c) != null) {
                 WidgetRenderer.updateAll(c, loading = true)
-                refreshInReceiver(c, UsageRepository.Source.WIDGET)
+                UsageWorker.refreshNow(c, UsageRepository.Source.WIDGET)
             }
             ACTION_TICK -> if (Prefs.mode(c) != null) {
                 Scheduler.scheduleTick(c)
-                refreshInReceiver(c, UsageRepository.Source.TIMER)
+                UsageWorker.refreshNow(c, UsageRepository.Source.TIMER)
             }
             else -> super.onReceive(c, intent)
-        }
-    }
-
-    /**
-     * Runs the refresh right here instead of handing it to WorkManager, which may postpone
-     * one-time work (battery optimizations) — the tap would then appear to do nothing.
-     * goAsync() keeps the receiver alive; a fetch takes a few seconds, well under the limit.
-     */
-    private fun refreshInReceiver(c: Context, source: UsageRepository.Source) {
-        val pending = goAsync()
-        val app = c.applicationContext
-        CoroutineScope(SupervisorJob() + Dispatchers.Default).launch {
-            try { UsageRepository.refresh(app, source) } finally { pending.finish() }
         }
     }
 

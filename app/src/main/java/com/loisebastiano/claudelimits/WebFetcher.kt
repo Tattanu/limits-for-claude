@@ -5,6 +5,8 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.webkit.JavascriptInterface
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +58,15 @@ object WebFetcher {
         wv.addJavascriptInterface(Bridge { s -> if (!finished) { close(); if (cont.isActive) cont.resume(s) } }, "LFC")
         wv.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
-                if (!finished) view.evaluateJavascript(script(orgHint), null)
+                // Skip Chromium's error page: the script would only fail with "Failed to fetch".
+                if (!finished && url.startsWith("https://claude.ai/")) view.evaluateJavascript(script(orgHint), null)
+            }
+
+            override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError) {
+                if (!request.isForMainFrame || finished) return
+                val msg = JSONObject().put("error", "network: ${error.description} (${error.errorCode})").toString()
+                close()
+                if (cont.isActive) cont.resume(msg)
             }
         }
         cont.invokeOnCancellation { Handler(Looper.getMainLooper()).post { close() } }

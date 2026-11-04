@@ -6,7 +6,11 @@ versions follow [Semantic Versioning](https://semver.org/). CI builds of `main` 
 ## [Unreleased]
 
 ### Fixed
-- Tapping the widget's top-right corner (and the 1–10 min timer) did not refresh: the work was handed to WorkManager, which can postpone it. It now runs immediately in the widget receiver.
+- Tapping the widget's top-right corner (and the 1–10 min timer) did not refresh: first the job was postponed by battery optimizations, then (0.1.32) running in the widget receiver had no network (`TypeError: Failed to fetch`). It now runs as an expedited job, started immediately with network access.
+- Network errors of the page load are now reported precisely (e.g. `network: net::ERR_… (code)`) instead of a generic `Failed to fetch`.
+
+### Changed
+- Clearer wording of the per-product counter option (sum = weekly limit vs. sum = 100%).
 
 ### Changed
 - Build: Android Gradle Plugin 9.5.0 (built-in Kotlin), Kotlin 2.4.21, Gradle 9.8.2, WorkManager 2.12.0; CI actions updated. Unit tests now run on the debug variant (`testDebugUnitTest`).
