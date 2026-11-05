@@ -69,6 +69,10 @@ Known `kind` values and their labels live in `Items.limitLabel`. Unknown kinds a
 prettified name (`weekly_foo` → "Weekly foo"); if a `scope` is present the kind becomes `kind:scope`.
 Sample responses used by the tests: `app/src/test/resources/`.
 
+**Free plan** (verified 2026-11-05 with a real Free account): the endpoint answers HTTP 200, but every field is
+`null` and `limits` is `[]` (capabilities `chat,default_claude_ai`). claude.ai has no usage percentages for Free
+accounts, so the widget shows an explanation instead of bars. Sample: `app/src/test/resources/usage_free_empty.json`.
+
 The plan name (Pro/Max/Team/Enterprise/Free) is guessed from the organization `capabilities` and
 `rate_limit_tier` (`Plans.label`).
 

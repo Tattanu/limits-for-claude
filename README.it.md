@@ -101,7 +101,8 @@ Dettagli, scelte progettuali e alternative scartate: [docs/ARCHITECTURE.md](docs
   ([articolo](https://www.theregister.com/2026/02/20/anthropic_clarifies_ban_third_party_claude_access)).
   Per questo l'app **non** usa token né OAuth: legge solo la pagina di utilizzo della tua sessione claude.ai.
 - **Verificato finora** (piano Pro, Samsung Galaxy S23 Ultra, novembre 2026): accesso con email, limiti di sessione e settimanali, ripartizione per prodotto (Code, Chat, Cowork, Altro), impaginazione che si adatta al ridimensionamento.
-  **Non ancora verificato:** risposte dei piani Free, Max, Team ed Enterprise (sul Free, se claude.ai non indica percentuali, il widget lo spiega; usa *Copia dati diagnostici* nell'app e allegalo a una issue);
+  **Piano Free** (verificato a novembre 2026): claude.ai non fornisce percentuali di utilizzo per gli account Free (tutti i campi vuoti), quindi il widget mostra "Claude Free" e una spiegazione al posto delle barre.
+  **Non ancora verificato:** risposte dei piani Max, Team ed Enterprise (usa *Copia dati diagnostici* nell'app e allegalo a una issue);
   formato esatto dei link di accesso email (l'apertura diretta presuppone `https://claude.ai/magic-link…`; il metodo degli appunti funziona con qualsiasi link claude.ai).
 
 ## Compilare dal codice
