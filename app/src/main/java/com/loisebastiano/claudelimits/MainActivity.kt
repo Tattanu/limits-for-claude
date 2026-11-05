@@ -1,6 +1,8 @@
 package com.loisebastiano.claudelimits
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -21,6 +23,7 @@ import android.widget.ScrollView
 import android.widget.SeekBar
 import android.widget.Switch
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
@@ -34,6 +37,7 @@ class MainActivity : Activity() {
     private lateinit var loginBtn: Button
     private lateinit var refreshBtn: Button
     private lateinit var logoutBtn: Button
+    private lateinit var diagBtn: Button
     private lateinit var trafficSwitch: Switch
 
     private fun dp(v: Float) = (v * resources.displayMetrics.density).toInt()
@@ -71,6 +75,9 @@ class MainActivity : Activity() {
         refreshBtn = button(btns, R.string.btn_refresh) { doRefresh() }
         logoutBtn = button(btns, R.string.btn_logout) { doLogout() }
         acc.addView(btns)
+        val diagRow = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        diagBtn = button(diagRow, R.string.btn_diag) { copyDiagnostic() }
+        acc.addView(diagRow)
 
         // Items
         val items = section(R.string.sec_items)
@@ -238,6 +245,13 @@ class MainActivity : Activity() {
         }
     }
 
+    /** Copies the last raw answer of claude.ai, so users of untested plans (e.g. Free) can attach it to an issue. */
+    private fun copyDiagnostic() {
+        val d = Prefs.diagnostic(this) ?: return
+        (getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(ClipData.newPlainText("Limits for Claude", d))
+        Toast.makeText(this, R.string.m_diag_copied, Toast.LENGTH_LONG).show()
+    }
+
     private fun doLogout() {
         CookieManager.getInstance().removeAllCookies(null)
         CookieManager.getInstance().flush()
@@ -264,10 +278,12 @@ class MainActivity : Activity() {
                 getString(if (ok) R.string.m_attempt_ok else R.string.m_attempt_failed))
         }
         err?.let { lines += getString(R.string.m_error, it) }
+        if (snap != null && snap.limits.isEmpty() && snap.products.isEmpty()) lines += WidgetRenderer.noDataMessage(this, snap)
         status.text = lines.joinToString("\n")
         loginBtn.visibility = if (mode == null) View.VISIBLE else View.GONE
         refreshBtn.visibility = if (mode != null) View.VISIBLE else View.GONE
         logoutBtn.visibility = if (mode != null) View.VISIBLE else View.GONE
+        diagBtn.visibility = if (mode != null && Prefs.diagnostic(this) != null) View.VISIBLE else View.GONE
 
         itemsBox.removeAllViews()
         val hidden = Prefs.hidden(this)

@@ -61,4 +61,8 @@
     <string name="src_app">app</string>
     <string name="src_background">in background</string>
     <string name="notif_channel">Aggiornamento utilizzo</string>
+    <string name="w_no_data_free">Piano Free: claude.ai non indica le percentuali di utilizzo per questo account. Il limite compare nella chat quando lo raggiungi.</string>
+    <string name="w_no_usage">claude.ai non fornisce dati di utilizzo per questo account</string>
+    <string name="btn_diag">Copia dati diagnostici</string>
+    <string name="m_diag_copied">Copiato: solo stato, piano e percentuali di utilizzo (niente chat). Incollalo in una issue GitHub per aiutare a supportare il tuo piano.</string>
 </resources>

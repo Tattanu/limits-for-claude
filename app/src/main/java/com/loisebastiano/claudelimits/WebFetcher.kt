@@ -36,10 +36,16 @@ object WebFetcher {
         val o = JSONObject(raw)
         if (o.has("error")) throw ApiException(o.getString("error"))
         val status = o.optInt("status")
-        if (status == 401 || status == 403) throw ApiException(c.getString(R.string.e_session))
-        if (status != 200) throw ApiException("HTTP $status")
+        val plan = Plans.label(o.optString("plan"))
+        Prefs.setDiagnostic(c, JSONObject().put("status", status).put("capabilities", o.optString("plan"))
+            .put("body", o.optString("body").take(4000)).toString(2))
+        // 401 anywhere, or 403 on the organization list, means the session is no longer valid.
+        if (status == 401 || (status == 403 && o.optString("stage") == "orgs")) throw ApiException(c.getString(R.string.e_session))
         o.optString("org").takeIf { it.isNotBlank() }?.let { Prefs.setOrg(c, it) }
-        return FetchResult(JSONObject(o.getString("body")), Plans.label(o.optString("plan")))
+        // Signed in, but the usage endpoint is refused or missing: report it as "not available", not as an error.
+        if (status == 403 || status == 404) return FetchResult(null, plan)
+        if (status != 200) throw ApiException("HTTP $status")
+        return FetchResult(JSONObject(o.getString("body")), plan)
     }
 
     private class Bridge(val onDone: (String) -> Unit) {
@@ -85,7 +91,7 @@ object WebFetcher {
       var org = $hint, plan = '';
       var h = {credentials: 'include', headers: {'Accept': 'application/json'}};
       var r = await fetch('/api/organizations', h);
-      if (r.status === 401 || r.status === 403) { LFC.done(JSON.stringify({status: r.status})); return; }
+      if (r.status === 401 || r.status === 403) { LFC.done(JSON.stringify({status: r.status, stage: 'orgs'})); return; }
       if (r.ok) {
         var a = await r.json(), sel = null, i;
         var m = document.cookie.match(/(?:^|; )lastActiveOrg=([^;]+)/);
@@ -98,7 +104,7 @@ object WebFetcher {
       if (!org) { LFC.done(JSON.stringify({error: 'no organization'})); return; }
       var u = await fetch('/api/organizations/' + org + '/usage', h);
       var t = await u.text();
-      LFC.done(JSON.stringify({status: u.status, org: org, plan: plan, body: t}));
+      LFC.done(JSON.stringify({status: u.status, stage: 'usage', org: org, plan: plan, body: t}));
     } catch (e) { LFC.done(JSON.stringify({error: String(e)})); }
   })();
 })();
