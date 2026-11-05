@@ -67,7 +67,32 @@ class UsageParserTest {
         assertEquals("Max", Plans.label("chat,claude_max,default_claude_max_20x"))
         assertEquals("Pro", Plans.label("chat,claude_pro,default_claude_ai"))
         assertEquals("Team", Plans.label("chat,raven"))
-        assertNull(Plans.label("chat"))
+        assertEquals("Free", Plans.label("chat,default_claude_ai"))
+        assertEquals("Free", Plans.label("chat"))
+        assertNull(Plans.label("api"))
         assertNull(Plans.label(null))
+    }
+
+    @Test
+    fun freePlan_allNullFieldsGiveNoLimits() {
+        val s = UsageParser.parse(fixture("usage_free_empty.json"), "Free")
+        assertTrue(s.limits.isEmpty())
+        assertTrue(s.products.isEmpty())
+        assertTrue(s.usageAvailable)
+    }
+
+    @Test
+    fun unavailableUsage_isKeptThroughJson() {
+        val s = UsageParser.parse(null, "Free")
+        assertTrue(s.limits.isEmpty())
+        val back = Snapshot.fromJson(s.toJson())!!
+        assertEquals(false, back.usageAvailable)
+        assertEquals("Free", back.plan)
+    }
+
+    @Test
+    fun oldSavedSnapshot_withoutAvailableFlag_defaultsToAvailable() {
+        val back = Snapshot.fromJson("""{"limits":[],"products":[],"fetchedAt":1,"plan":null}""")!!
+        assertTrue(back.usageAvailable)
     }
 }

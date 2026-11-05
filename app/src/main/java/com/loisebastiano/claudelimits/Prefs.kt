@@ -23,6 +23,9 @@ object Prefs {
         }
     fun setAttempt(c: Context, source: String, ok: Boolean) = p(c).edit().putLong("attemptAt", System.currentTimeMillis())
         .putString("attemptSource", source).putBoolean("attemptOk", ok).apply()
+    /** Last raw answer of claude.ai (status, capabilities, usage body): copied by the user to report unsupported plans. */
+    fun diagnostic(c: Context): String? = p(c).getString("diag", null)
+    fun setDiagnostic(c: Context, s: String) = p(c).edit().putString("diag", s).apply()
     fun setSnapshot(c: Context, s: Snapshot) = p(c).edit().putString("snapshot", s.toJson()).remove("error").apply()
 
     fun logout(c: Context) {

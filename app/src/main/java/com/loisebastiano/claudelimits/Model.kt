@@ -15,6 +15,8 @@ data class Snapshot(
     val products: List<Product>,
     val fetchedAt: Long,
     val plan: String?,
+    /** false when claude.ai answered but does not expose usage data for this account (seen as 403/404). */
+    val usageAvailable: Boolean = true,
 ) {
     fun toJson(): String {
         val la = JSONArray()
@@ -24,7 +26,7 @@ data class Snapshot(
         val pa = JSONArray()
         products.forEach { p -> pa.put(JSONObject().put("key", p.key).put("name", p.name).put("share", p.share)) }
         return JSONObject().put("limits", la).put("products", pa).put("fetchedAt", fetchedAt)
-            .put("plan", plan ?: JSONObject.NULL).toString()
+            .put("plan", plan ?: JSONObject.NULL).put("available", usageAvailable).toString()
     }
 
     companion object {
@@ -41,13 +43,15 @@ data class Snapshot(
                     val p = pa.getJSONObject(i)
                     Product(p.getString("key"), p.getString("name"), p.getDouble("share"))
                 }
-                Snapshot(limits, products, o.getLong("fetchedAt"), if (o.isNull("plan")) null else o.getString("plan"))
+                Snapshot(limits, products, o.getLong("fetchedAt"), if (o.isNull("plan")) null else o.getString("plan"),
+                    o.optBoolean("available", true))
             }
         } catch (e: Exception) { null }
     }
 }
 
-data class FetchResult(val usage: JSONObject, val plan: String?)
+/** [usage] is null when the usage endpoint is not available for this account. */
+data class FetchResult(val usage: JSONObject?, val plan: String?)
 
 class ApiException(msg: String) : Exception(msg)
 
@@ -61,8 +65,9 @@ object UsageParser {
         "seven_day_oauth_apps" to "weekly_oauth_apps",
     )
 
-    fun parse(o: JSONObject, plan: String?): Snapshot =
-        Snapshot(limits(o), products(o), System.currentTimeMillis(), plan)
+    fun parse(o: JSONObject?, plan: String?): Snapshot =
+        if (o == null) Snapshot(emptyList(), emptyList(), System.currentTimeMillis(), plan, usageAvailable = false)
+        else Snapshot(limits(o), products(o), System.currentTimeMillis(), plan)
 
     fun limits(o: JSONObject): List<Limit> {
         val out = mutableListOf<Limit>()
@@ -116,6 +121,8 @@ object Plans {
             "max" in s -> "Max"
             "pro" in s -> "Pro"
             "free" in s -> "Free"
+            // A claude.ai organization with chat but no paid capability is a Free account.
+            s.split(',').map { it.trim() }.contains("chat") -> "Free"
             else -> null
         }
     }

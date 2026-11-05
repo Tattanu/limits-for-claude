@@ -140,7 +140,8 @@ Found a security problem? Please report it privately: [SECURITY.md](SECURITY.md)
   For this reason the app **does not** use Claude Code tokens or OAuth; it only reads the usage page of your own claude.ai session.
   Contributions that add token or OAuth sign-in will not be accepted.
 - **Verified so far** (Pro plan, Samsung Galaxy S23 Ultra, November 2026): sign-in with email on claude.ai, session and weekly limits, per-product split (Code, Chat, Cowork, Other), adaptive layout when resizing.
-  **Not yet verified:** Max, Team and Enterprise responses;
+  **Free plan** (verified November 2026): claude.ai provides no usage percentages for Free accounts (all fields empty), so the widget shows "Claude Free" and an explanation instead of bars.
+  **Not yet verified:** Max, Team and Enterprise responses (use *Copy diagnostic data* in the app and attach it to an issue);
   the exact path of email sign-in links (the app assumes `https://claude.ai/magic-link…` for the direct-open feature; the clipboard method works with any claude.ai link).
   Reports from users of other plans are very welcome.
 - **Google sign-in** asks for the password (see [Use](#use)); this is a Google rule, not something the app can change.

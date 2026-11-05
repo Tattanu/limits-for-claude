@@ -38,6 +38,13 @@ object WidgetRenderer {
         return rv
     }
 
+    /** Why there is nothing to draw: Free plans get an explanation instead of a generic message. */
+    fun noDataMessage(c: Context, s: Snapshot): String = when {
+        s.plan == "Free" -> c.getString(R.string.w_no_data_free)
+        !s.usageAvailable -> c.getString(R.string.w_no_usage)
+        else -> c.getString(R.string.w_no_data)
+    }
+
     /** Also used by the live preview in the app. */
     fun bitmap(c: Context, wDp: Float, hDp: Float, loading: Boolean, look: Look = Look.from(c)): Bitmap {
         var scale = c.resources.displayMetrics.density
@@ -55,6 +62,7 @@ object WidgetRenderer {
         val message = when {
             mode == null -> c.getString(R.string.w_login)
             snap == null -> if (loading || error == null) c.getString(R.string.w_loading) else "⚠ $error"
+            snap.limits.isEmpty() && snap.products.isEmpty() -> noDataMessage(c, snap)
             else -> null
         }
         val items = snap?.let { Items.visible(c, it) } ?: emptyList()

@@ -5,6 +5,15 @@ versions follow [Semantic Versioning](https://semver.org/). CI builds of `main` 
 
 ## [Unreleased]
 
+## [0.3.0] – 2026-11-05
+
+### Added
+- Free plan support, verified with a real Free account (the usage endpoint answers 200 with every field empty): Free accounts are recognized (title "Claude Free"), and when claude.ai reports no usage percentages the widget explains it instead of a generic message.
+- *Copy diagnostic data* button: copies the last raw answer of claude.ai (HTTP status, plan capabilities, usage percentages; no chats) to attach to an issue for untested plans.
+
+### Fixed
+- A 403/404 from the usage endpoint was shown as "Session expired: sign in again" even when the session was valid; now only 401, or 403 on the organization list, means an expired session.
+
 ## [0.2.1] – 2026-11-04
 
 No changes to the app itself: the APK works exactly like 0.2.0.
