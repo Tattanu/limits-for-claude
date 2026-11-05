@@ -5,6 +5,8 @@ versions follow [Semantic Versioning](https://semver.org/). CI builds of `main` 
 
 ## [Unreleased]
 
+## [0.3.0] – 2026-11-05
+
 ### Added
 - Free plan support, verified with a real Free account (the usage endpoint answers 200 with every field empty): Free accounts are recognized (title "Claude Free"), and when claude.ai reports no usage percentages the widget explains it instead of a generic message.
 - *Copy diagnostic data* button: copies the last raw answer of claude.ai (HTTP status, plan capabilities, usage percentages; no chats) to attach to an issue for untested plans.
