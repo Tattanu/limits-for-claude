@@ -30,7 +30,7 @@ object Items {
     fun limitLabel(c: Context, kind: String): String {
         val base = kind.substringBefore(':')
         val scope = kind.substringAfter(':', "")
-        return when (base) {
+        return when (if (scope.isNotBlank()) "" else base) {
             "session" -> c.getString(R.string.l_session)
             "weekly_all" -> c.getString(R.string.l_week)
             "weekly_opus" -> c.getString(R.string.l_week_opus)
@@ -38,7 +38,12 @@ object Items {
             "weekly_cowork" -> c.getString(R.string.l_cowork)
             "weekly_oauth_apps" -> c.getString(R.string.l_apps)
             "extra_usage" -> c.getString(R.string.l_extra)
-            else -> pretty(scope.ifBlank { base })
+            else -> when {
+                scope.isBlank() -> pretty(base)
+                "week" in base || "seven_day" in base -> c.getString(R.string.l_week_model, scope)
+                "session" in base || "five_hour" in base -> c.getString(R.string.l_session_model, scope)
+                else -> pretty(scope)
+            }
         }
     }
 

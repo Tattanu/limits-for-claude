@@ -78,7 +78,7 @@ object UsageParser {
                 val l = arr.optJSONObject(i) ?: continue
                 if (!l.has("percent") || l.isNull("percent")) continue
                 val kind = l.optString("kind", "limit")
-                val scope = if (l.isNull("scope")) null else l.optString("scope").takeIf { it.isNotBlank() }
+                val scope = scopeName(l)
                 out += Limit(if (scope != null) "$kind:$scope" else kind, l.optDouble("percent"), time(l, "resets_at"))
             }
         } else {
@@ -95,6 +95,37 @@ object UsageParser {
         }
         return out
     }
+
+    /**
+     * The scope of a limit as a short readable name. It used to be a plain string ("opus");
+     * since November 2026 it can be an object like {"model":{"id":null,"display_name":"Fable"},"surface":null}.
+     */
+    fun scopeName(l: JSONObject): String? {
+        if (!l.has("scope") || l.isNull("scope")) return null
+        val raw = l.opt("scope")
+        if (raw is JSONObject) {
+            val parts = mutableListOf<String>()
+            val m = raw.opt("model")
+            when (m) {
+                is JSONObject -> text(m, "display_name") ?: text(m, "name") ?: text(m, "id")
+                is String -> m.takeIf { it.isNotBlank() }
+                else -> null
+            }?.let { parts += it }
+            val sf = raw.opt("surface")
+            when (sf) {
+                is JSONObject -> text(sf, "display_name") ?: text(sf, "name") ?: text(sf, "id")
+                is String -> sf.takeIf { it.isNotBlank() }
+                else -> null
+            }?.let { parts += it }
+            return parts.joinToString(" ").takeIf { it.isNotBlank() }
+        }
+        val s = raw?.toString()?.trim().orEmpty()
+        // Never show raw JSON as a label.
+        return s.takeIf { it.isNotBlank() && !s.startsWith("{") && !s.startsWith("[") }
+    }
+
+    private fun text(o: JSONObject, key: String): String? =
+        if (!o.has(key) || o.isNull(key)) null else o.optString(key).trim().takeIf { it.isNotBlank() }
 
     fun products(o: JSONObject): List<Product> {
         val rows = o.optJSONObject("seven_day_breakdown")?.optJSONArray("rows") ?: return emptyList()

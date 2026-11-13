@@ -54,6 +54,25 @@ class UsageParserTest {
     }
 
     @Test
+    fun objectScope_usesModelDisplayName() {
+        // Real shape seen on claude.ai on 09/11/2026.
+        val o = JSONObject("""{"limits":[{"kind":"weekly_model","percent":0,"scope":{"model":{"id":null,"display_name":"Fable"},"surface":null},"resets_at":null}]}""")
+        assertEquals("weekly_model:Fable", UsageParser.limits(o).single().kind)
+    }
+
+    @Test
+    fun objectScope_withoutNamesNeverShowsJson() {
+        val o = JSONObject("""{"limits":[{"kind":"weekly_model","percent":3,"scope":{"model":null,"surface":null},"resets_at":null}]}""")
+        assertEquals("weekly_model", UsageParser.limits(o).single().kind)
+    }
+
+    @Test
+    fun objectScope_addsSurface() {
+        val o = JSONObject("""{"limits":[{"kind":"weekly","percent":3,"scope":{"model":{"id":"x","display_name":"Opus"},"surface":"code"},"resets_at":null}]}""")
+        assertEquals("weekly:Opus code", UsageParser.limits(o).single().kind)
+    }
+
+    @Test
     fun snapshot_roundTripsThroughJson() {
         val s = UsageParser.parse(fixture("usage_new_format.json"), "Pro")
         val back = Snapshot.fromJson(s.toJson())!!
