@@ -5,6 +5,11 @@ versions follow [Semantic Versioning](https://semver.org/). CI builds of `main` 
 
 ## [Unreleased]
 
+## [0.3.1] – 2026-11-13
+
+### Fixed
+- A new per-model weekly limit appeared with raw JSON as its name (`{"model":{"id":null,"display_name":"Fable"},"surface":null}`): claude.ai now sends the limit scope as an object instead of a string. The widget now reads the model (and surface) name and shows e.g. "Fable week" / "Fable sett."; it never shows raw JSON as a label.
+
 ## [0.3.0] – 2026-11-05
 
 ### Added

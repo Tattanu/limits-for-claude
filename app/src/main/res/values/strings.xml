@@ -9,6 +9,8 @@
     <string name="l_week">Weekly</string>
     <string name="l_week_opus">Opus week</string>
     <string name="l_week_sonnet">Sonnet week</string>
+    <string name="l_week_model">%1$s week</string>
+    <string name="l_session_model">%1$s 5h</string>
     <string name="l_extra">Extra usage</string>
     <string name="l_cowork">Cowork</string>
     <string name="l_apps">Apps</string>
